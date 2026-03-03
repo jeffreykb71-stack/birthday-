@@ -20,9 +20,11 @@
         .btn { padding: 15px 40px; font-size: 1.2rem; border-radius: 50px; border: none; cursor: pointer; margin: 10px; color: white; font-weight: bold; transition: 0.3s; }
         .btn-yes { background: var(--yes-green); }
         .btn-no { background: var(--no-red); }
-        .card { background: rgba(255, 255, 255, 0.4); backdrop-filter: blur(10px); border-radius: 25px; padding: 20px; width: 320px; margin: auto; box-shadow: 0 10px 30px rgba(0,0,0,0.1); cursor: pointer; }
+        .card { position: relative; background: rgba(255, 255, 255, 0.4); backdrop-filter: blur(10px); border-radius: 25px; padding: 20px; width: 320px; margin: auto; box-shadow: 0 10px 30px rgba(0,0,0,0.1); cursor: pointer; }
         .media-content { width: 100%; height: 350px; object-fit: cover; border-radius: 20px; }
         .cake-img { width: 180px; animation: bounce 2s infinite; }
+        .sound-btn { position: absolute; bottom: 85px; right: 35px; background: rgba(0,0,0,0.6); border: none; border-radius: 50%; width: 45px; height: 45px; color: white; font-size: 1.2rem; cursor: pointer; z-index: 10; display: flex; align-items: center; justify-content: center; transition: 0.3s; }
+        .sound-btn:hover { transform: scale(1.1); background: rgba(0,0,0,0.8); }
         @keyframes bounce { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.1); } }
     </style>
 </head>
@@ -49,8 +51,8 @@
     </div>
 
     <div id="screen4" class="screen">
-        <div id="memoryCard" class="card animate__animated" onclick="showPopup()">
-            <div id="mediaContainer"></div>
+        <div id="memoryCard" class="card animate__animated">
+            <div id="mediaContainer" onclick="showPopup()"></div>
             <p id="currentTitle" style="font-weight: bold; margin-top: 15px;"></p>
         </div>
         <div style="margin-top: 20px;">
@@ -67,29 +69,28 @@
     </div>
 
     <script>
-        // THE PATTERN: 3 Pics, 1 Video
         const memories = [
             { url: "https://i.ibb.co/rfN99SX3/Whats-App-Image-2026-03-03-at-12-35-47-AM.jpg", title: "Where it all started... 1", msg: "Where it all started..." },
             { url: "https://i.ibb.co/Hf71zBRC/Whats-App-Image-2026-03-03-at-12-59-26-AM.jpg", title: "When margamkali turns to margamillatha kalli.. ", msg: "When margamkali turns to margamillatha kalli.. " },
             { url: "https://i.ibb.co/gbvcztNS/Whats-App-Image-2026-03-03-at-12-19-01-AM-1.jpg", title: "When you went to buy me laser", msg: "when you went to buy me laser" },
             { url: "https://www.dropbox.com/scl/fi/r41fvurmqvvc4j0n2da4x/WhatsApp-Video-2026-03-03-at-1.03.56-AM.mp4?rlkey=0g9hdh5r0rk4bmo0fjpnka8ew&st=07cpnkof&dl=1", title: "dumb arguments", msg: "Dumb arguments" },
-            
-            // Repeat the pattern as needed
             { url: "https://i.ibb.co/rKDtZc1q/Whats-App-Image-2026-03-03-at-12-19-01-AM-2.jpg", title: "Gossiping with deserts", msg: "gossiping with deserts" },
             { url: "https://i.ibb.co/N6YkZQsB/Whats-App-Image-2026-02-01-at-8-59-37-PM-4.jpg", title: "To the day of mykosssss", msg: "To the day of mykosss" },
-            { url: "https://i.ibb.co/Y4HgFpTN/Whats-App-Image-2026-02-01-at-4-51-53-PM.jpg", title: "", msg: "" },
-            { url: "https://i.ibb.co/XZDnQnL1/Whats-App-Image-2026-02-01-at-4-45-33-PM-1.jpg", title: "", msg: "" },
-            { url: "https://i.ibb.co/0RK9mKv8/Whats-App-Image-2026-02-01-at-4-45-32-PM-2.jpg", title: "", msg: "" },
-            { url: "https://i.ibb.co/TB552XXg/Whats-App-Image-2026-03-03-at-1-08-16-AM.jpg", title: "", msg: "" },
-            { url: "https://i.ibb.co/FLsJKsch/Whats-App-Image-2026-02-01-at-4-45-24-PM.jpg", title: "", msg: "" },
-            { url: "https://www.dropbox.com/scl/fi/z12zk9fdca67foneqjo5i/WhatsApp-Video-2026-03-03-at-1.13.55-AM.mp4?rlkey=o8b3s7zh5afl5eextx0s8lb7i&st=dgcgsqq6&dl=1", title: "some vodka🥴🍹", msg: "" },
+            { url: "https://i.ibb.co/Y4HgFpTN/Whats-App-Image-2026-02-01-at-4-51-53-PM.jpg", title: "", msg: "Memories!" },
+            { url: "https://i.ibb.co/XZDnQnL1/Whats-App-Image-2026-02-01-at-4-45-33-PM-1.jpg", title: "", msg: "Memories!" },
+            { url: "https://i.ibb.co/0RK9mKv8/Whats-App-Image-2026-02-01-at-4-45-32-PM-2.jpg", title: "", msg: "Memories!" },
+            { url: "https://i.ibb.co/TB552XXg/Whats-App-Image-2026-03-03-at-1-08-16-AM.jpg", title: "", msg: "Memories!" },
+            { url: "https://i.ibb.co/svnXRGqC/Whats-App-Image-2026-03-03-at-7-28-25-PM.jpg", title: "", msg: "Memories!" },
+            { url: "https://i.ibb.co/Y73h4y4F/Whats-App-Image-2026-03-03-at-7-28-26-PM.jpg", title: "", msg: "Memories!" },
+            { url: "https://www.dropbox.com/scl/fi/z12zk9fdca67foneqjo5i/WhatsApp-Video-2026-03-03-at-1.13.55-AM.mp4?rlkey=o8b3s7zh5afl5eextx0s8lb7i&st=dgcgsqq6&dl=1", title: "some vodka🥴🍹", msg: "Cheers!" },
+            { url: "https://i.ibb.co/FLsJKsch/Whats-App-Image-2026-02-01-at-4-45-24-PM.jpg", title: "", msg: "Memories!" },
             { url: "https://www.dropbox.com/scl/fi/wd1j1ouifil61bofrzbar/WhatsApp-Video-2026-03-03-at-1.09.49-AM.mp4?rlkey=zm3gu4tvpzz023wms8fm7cpnf&st=0bvu4yxs&dl=1", title: "Dumber things", msg: "Dumber things" },
-            { url: "https://i.ibb.co/4ZhDCbx7/Whats-App-Image-2026-02-01-at-4-45-18-PM.jpg", title: "", msg: "" },
-            { url: "https://www.dropbox.com/scl/fi/7btgua029na1q52l9f5ki/WhatsApp-Video-2026-03-03-at-1.11.38-AM.mp4?rlkey=0p0xa2gjqkdeoj1q2ks8eqdwc&st=ppjbcsqh&dl=1", title: "Even dumber things", msg: "" },
-            { url: "https://www.dropbox.com/scl/fi/41m3aidg4vzqztqme5j6b/WhatsApp-Video-2026-03-03-at-1.12.37-AM.mp4?rlkey=9q3hu958mjda36jtqd8yil802&st=b5m5kv8g&dl=1", title: "some Upadesham", msg: "" },
-            { url: "https://i.ibb.co/8gj0T75f/Whats-App-Image-2026-02-01-at-4-44-39-PM-1.jpg", title: "😎😎", msg: "" },
-            { url: "https://i.ibb.co/ksmhhbgB/Whats-App-Image-2026-02-01-at-4-45-30-PM-1.jpg", title: "And so on...", msg: "" },
-
+            { url: "https://i.ibb.co/4ZhDCbx7/Whats-App-Image-2026-02-01-at-4-45-18-PM.jpg", title: "", msg: "Memories!" },
+            { url: "https://www.dropbox.com/scl/fi/7btgua029na1q52l9f5ki/WhatsApp-Video-2026-03-03-at-1.11.38-AM.mp4?rlkey=0p0xa2gjqkdeoj1q2ks8eqdwc&st=ppjbcsqh&dl=1", title: "Even dumber things", msg: "Even dumber things" },
+            { url: "https://i.ibb.co/Y734X8Pm/Whats-App-Image-2026-03-03-at-7-28-24-PM.jpg", title: "", msg: "Memories!" },
+            { url: "https://www.dropbox.com/scl/fi/41m3aidg4vzqztqme5j6b/WhatsApp-Video-2026-03-03-at-1.12.37-AM.mp4?rlkey=9q3hu958mjda36jtqd8yil802&st=b5m5kv8g&dl=1", title: "some Upadesham", msg: "Upadesham time!" },
+            { url: "https://i.ibb.co/8gj0T75f/Whats-App-Image-2026-02-01-at-4-44-39-PM-1.jpg", title: "😎😎", msg: "Cool vibes" },
+            { url: "https://i.ibb.co/ksmhhbgB/Whats-App-Image-2026-02-01-at-4-45-30-PM-1.jpg", title: "And so on...", msg: "And so on..." }
         ];
 
         let currentIndex = 0;
@@ -98,19 +99,31 @@
             const card = document.getElementById('memoryCard');
             const container = document.getElementById('mediaContainer');
             
-            // Wither-in effect
             card.classList.remove('animate__fadeIn');
             void card.offsetWidth; 
             card.classList.add('animate__fadeIn');
 
             const item = memories[currentIndex];
-            // Detecting media type
             if (item.url.toLowerCase().includes('.mp4')) {
-                container.innerHTML = `<video src="${item.url}" class="media-content" autoplay loop muted playsinline></video>`;
+                // Added a sound button specifically for video cards
+                container.innerHTML = `
+                    <video id="journeyVideo" src="${item.url}" class="media-content" autoplay loop muted playsinline></video>
+                    <button class="sound-btn" onclick="event.stopPropagation(); toggleSound();">🔊</button>
+                `;
             } else {
                 container.innerHTML = `<img src="${item.url}" class="media-content">`;
             }
             document.getElementById('currentTitle').innerText = item.title;
+        }
+
+        function toggleSound() {
+            const video = document.getElementById('journeyVideo');
+            if (video) {
+                video.muted = !video.muted;
+                // Simple visual feedback for Juvan
+                const soundBtn = document.querySelector('.sound-btn');
+                soundBtn.innerText = video.muted ? "🔇" : "🔊";
+            }
         }
 
         function nextPhoto() { if (currentIndex < memories.length - 1) { currentIndex++; updateCard(); } else { nextScreen(5); } }
