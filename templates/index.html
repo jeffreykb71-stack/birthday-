@@ -24,18 +24,29 @@
         .screen { text-align: center; padding: 20px; display: none; width: 100%; }
         .active { display: block; }
         
-        .btn { padding: 12px 35px; font-size: 1.1rem; border-radius: 50px; border: none; cursor: pointer; margin: 10px; color: white; font-weight: bold; transition: 0.3s; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
-        .btn-yes { background: var(--yes-green); }
-        .btn-no { background: var(--no-red); }
-        .btn-wait { background: var(--wait-blue); }
-        
-        .card { 
-            position: relative; background: rgba(255, 255, 255, 0.15); backdrop-filter: blur(20px) saturate(180%);
-            border: 1px solid rgba(255, 255, 255, 0.3); border-radius: 20px; padding: 15px 15px 45px 15px; 
-            width: 320px; margin: auto; box-shadow: 0 25px 50px rgba(0,0,0,0.2); transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        /* Glassmorphism Buttons */
+        .btn { 
+            padding: 12px 35px; font-size: 1.1rem; border-radius: 50px; cursor: pointer; 
+            margin: 10px; font-weight: bold; transition: 0.3s;
+            backdrop-filter: blur(10px); background: rgba(255, 255, 255, 0.25);
+            border: 1px solid rgba(255, 255, 255, 0.4); color: #333;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1); 
         }
+        .btn:hover { background: rgba(255, 255, 255, 0.4); transform: translateY(-2px); }
+        .btn-yes { color: #1b5e20; }
+        .btn-no { color: #b71c1c; }
         
-        .media-content { width: 100%; height: 350px; object-fit: cover; border-radius: 15px; }
+        /* Polaroid Card Polish */
+        .card { 
+            position: relative; background: white;
+            border: 8px solid white; border-radius: 4px; padding: 10px 10px 40px 10px; 
+            width: 320px; margin: auto; 
+            box-shadow: 0 30px 60px rgba(0,0,0,0.12), 0 20px 40px rgba(0,0,0,0.1);
+            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        .card:hover { transform: scale(1.05) rotate(2deg); }
+        
+        .media-content { width: 100%; height: 350px; object-fit: cover; border-radius: 2px; }
         .cake-img { width: 180px; animation: bounce 2s infinite; }
         .sound-btn { position: absolute; bottom: 85px; right: 35px; background: rgba(0,0,0,0.6); border: none; border-radius: 50%; width: 45px; height: 45px; color: white; font-size: 1.2rem; cursor: pointer; z-index: 10; display: flex; align-items: center; justify-content: center; }
         
@@ -53,6 +64,17 @@
         @keyframes bounce { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.1); } }
         .floating-emoji { position: fixed; bottom: -50px; animation: floatUp 4s linear forwards; font-size: 1.5rem; pointer-events: none; z-index: -1; }
         @keyframes floatUp { to { transform: translateY(-110vh) rotate(360deg); opacity: 0; } }
+
+        /* Laban Shake */
+        .laban-img:hover { animation: labanShake 0.5s infinite; cursor: pointer; }
+        @keyframes labanShake {
+            0% { transform: translate(1px, 1px) rotate(0deg); }
+            10% { transform: translate(-1px, -2px) rotate(-1deg); }
+            20% { transform: translate(-3px, 0px) rotate(1deg); }
+            30% { transform: translate(3px, 2px) rotate(0deg); }
+            40% { transform: translate(1px, -1px) rotate(1deg); }
+            50% { transform: translate(-1px, 2px) rotate(-1deg); }
+        }
     </style>
 </head>
 <body>
@@ -73,20 +95,20 @@
     </div>
 
     <div id="screen3" class="screen">
-        <div style="max-width: 600px; margin: auto; background: rgba(255,255,255,0.3); padding: 30px; border-radius: 20px;">
+        <div style="max-width: 600px; margin: auto; background: rgba(255,255,255,0.3); padding: 30px; border-radius: 20px; backdrop-filter: blur(5px);">
             <p>Well, it's been nearly half a year since we actually talked (to be exact 6 months 16 days or 200 days). Oddly, it feels I have known you much, much before and we have been through one heck of a roller-coaster since that. So here is a little reminder of all of our journey through these past months.</p>
-            <button class="btn btn-yes" onclick="nextScreen(4)">See our Journey ✨</button>
+            <button class="btn" style="background: white;" onclick="nextScreen(4)">See our Journey ✨</button>
         </div>
     </div>
 
     <div id="screen4" class="screen">
         <div id="memoryCard" class="card animate__animated">
             <div id="mediaContainer" onclick="showPopup()"></div>
-            <p id="currentTitle" style="font-weight: bold; margin-top: 15px;"></p>
+            <p id="currentTitle" style="font-weight: bold; margin-top: 15px; font-family: 'Shadows Into Light', cursive; font-size: 1.4rem; color: #333;"></p>
         </div>
         <div style="margin-top: 20px;">
-            <button class="btn btn-yes" onclick="prevPhoto()">Back</button>
-            <button class="btn btn-yes" onclick="nextPhoto()">Next</button>
+            <button class="btn" onclick="prevPhoto()">Back</button>
+            <button class="btn" onclick="nextPhoto()">Next</button>
         </div>
     </div>
 
@@ -101,7 +123,7 @@
     <div id="screen6" class="screen animate__animated">
         <img src="https://img.icons8.com/emoji/512/birthday-cake-emoji.png" class="cake-img">
         <h1 style="color: black; font-family: 'Shadows Into Light', cursive; font-size: 3rem; margin-top: 20px;">HAPPY BIRTHDAY JUVAN (NUNU)CHECHI</h1>
-        <img src="https://i.ibb.co/LzbKgXhk/f5f9409c-f086-4a1d-914e-0cd06c11fe60-removebg-preview.png" onclick="labanSurprise()" style="width:150px; border-radius:15px; margin-top:10px; cursor:pointer;">
+        <img src="https://i.ibb.co/LzbKgXhk/f5f9409c-f086-4a1d-914e-0cd06c11fe60-removebg-preview.png" class="laban-img" onclick="labanSurprise()" style="width:150px; border-radius:15px; margin-top:10px;">
     </div>
 
     <script>
@@ -146,8 +168,8 @@
             if (video) { video.muted = !video.muted; document.querySelector('.sound-btn').innerText = video.muted ? "🔇" : "🔊"; }
         }
 
-        function createEmoji() {
-            const emojis = ['✨', '🎈', '💖', '🧸'];
+        function createEmoji(type = 'default') {
+            const emojis = type === 'mc' ? ['👑'] : ['✨', '🎈', '💖', '🧸'];
             const e = document.createElement('div');
             e.className = 'floating-emoji';
             e.innerText = emojis[Math.floor(Math.random() * emojis.length)];
@@ -172,8 +194,16 @@
             if (kickout) kickout.remove();
             const target = document.getElementById('screen' + num);
             if (target) target.classList.add('active');
-            if(num === 4) { updateCard(); setInterval(createEmoji, 600); document.getElementById('bgMusic').play(); }
-            if(num === 6) { setInterval(() => { confetti({ particleCount: 100, spread: 70, origin: { y: 0.6 } }); }, 800); }
+            
+            if(num === 4) { 
+                updateCard(); 
+                setInterval(createEmoji, 600); 
+                document.getElementById('bgMusic').play(); 
+            }
+            if(num === 6) { 
+                setInterval(() => { confetti({ particleCount: 100, spread: 70, origin: { y: 0.6 } }); }, 800); 
+                setInterval(() => createEmoji('mc'), 1000); // Main Character Crowns
+            }
         }
 
         function kickOut(msg) {
