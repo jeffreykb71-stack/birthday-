@@ -7,16 +7,23 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Shadows+Into+Light&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap');
+
         :root { --yes-green: #2ecc71; --no-red: #e74c3c; --wait-blue: #3498db; }
+        
         body {
             margin: 0; background: linear-gradient(-45deg, #ff9a9e, #fad0c4, #a1c4fd, #c2e9fb);
             background-size: 400% 400%; animation: gradient 15s ease infinite;
             font-family: 'Poppins', sans-serif; height: 100vh;
             display: flex; justify-content: center; align-items: center; overflow: hidden;
         }
+        
         @keyframes gradient { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
+        
         .screen { text-align: center; padding: 20px; display: none; width: 100%; }
         .active { display: block; }
+        
         .btn { padding: 12px 35px; font-size: 1.1rem; border-radius: 50px; border: none; cursor: pointer; margin: 10px; color: white; font-weight: bold; transition: 0.3s; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
         .btn-yes { background: var(--yes-green); }
         .btn-no { background: var(--no-red); }
@@ -27,10 +34,22 @@
             border: 1px solid rgba(255, 255, 255, 0.3); border-radius: 20px; padding: 15px 15px 45px 15px; 
             width: 320px; margin: auto; box-shadow: 0 25px 50px rgba(0,0,0,0.2); transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
-        .card:hover { transform: scale(1.05) rotate(-2deg); background: rgba(255, 255, 255, 0.25); }
+        
         .media-content { width: 100%; height: 350px; object-fit: cover; border-radius: 15px; }
         .cake-img { width: 180px; animation: bounce 2s infinite; }
         .sound-btn { position: absolute; bottom: 85px; right: 35px; background: rgba(0,0,0,0.6); border: none; border-radius: 50%; width: 45px; height: 45px; color: white; font-size: 1.2rem; cursor: pointer; z-index: 10; display: flex; align-items: center; justify-content: center; }
+        
+        .sticky-note {
+            background: #ffeb3b; color: #333; padding: 30px; width: 300px; margin: auto;
+            box-shadow: 10px 10px 20px rgba(0,0,0,0.2); transform: rotate(-2deg);
+            font-family: 'Shadows Into Light', cursive; border-bottom-right-radius: 60px 5px;
+            position: relative; cursor: pointer; z-index: 20;
+        }
+        .sticky-note::after { content: ""; position: absolute; bottom: 0; right: 0; border-width: 20px 20px 0 0; border-style: solid; border-color: #fbc02d #fad0c4; }
+        
+        @keyframes fallOff { 0% { transform: rotate(-2deg); opacity: 1; } 20% { transform: rotate(10deg); } 100% { transform: translateY(100vh) rotate(45deg); opacity: 0; } }
+        .fall { animation: fallOff 1.2s forwards; pointer-events: none; }
+
         @keyframes bounce { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.1); } }
         .floating-emoji { position: fixed; bottom: -50px; animation: floatUp 4s linear forwards; font-size: 1.5rem; pointer-events: none; z-index: -1; }
         @keyframes floatUp { to { transform: translateY(-110vh) rotate(360deg); opacity: 0; } }
@@ -71,9 +90,16 @@
         </div>
     </div>
 
-    <div id="screen5" class="screen animate__animated">
+    <div id="screen5" class="screen">
+        <div id="note" class="sticky-note animate__animated animate__jackInTheBox" onclick="peelOff()">
+            <p style="font-size: 1.3rem;">To the most maturely immature, to the most childish chechi, to the somewhat spoiled person with MC syndrome...</p>
+            <p style="font-size: 1.3rem;">🥂 to all the days of fun and drama all of us had together and 🥂 to the hope we will have many many more.</p>
+            <p style="font-size: 0.8rem; opacity: 0.6; margin-top: 10px;">(Tap to peel ✨)</p>
+        </div>
+    </div>
+
+    <div id="screen6" class="screen animate__animated">
         <img src="https://img.icons8.com/emoji/512/birthday-cake-emoji.png" class="cake-img">
-        <p>🥂 to all the days of fun and drama all of us had together and 🥂 to the hope we will have many many more.</p>
         <h1 style="color: #ff6b6b;">HAPPY BIRTHDAY JUVAN (NUNU)CHECHI</h1>
         <img src="https://i.ibb.co/LzbKgXhk/f5f9409c-f086-4a1d-914e-0cd06c11fe60-removebg-preview.png" onclick="labanSurprise()" style="width:150px; border-radius:15px; margin-top:10px; cursor:pointer;">
     </div>
@@ -93,7 +119,7 @@
             { url: "https://www.dropbox.com/scl/fi/7btgua029na1q52l9f5ki/WhatsApp-Video-2026-03-03-at-1.11.38-AM.mp4?rlkey=0p0xa2gjqkdeoj1q2ks8eqdwc&st=ppjbcsqh&dl=1", title: "Even dumber things", msg: "Even dumber things" },
             { url: "https://www.dropbox.com/scl/fi/41m3aidg4vzqztqme5j6b/WhatsApp-Video-2026-03-03-at-1.12.37-AM.mp4?rlkey=9q3hu958mjda36jtqd8yil802&st=b5m5kv8g&dl=1", title: "Upadesham", msg: "Upadesham time!" },
             { url: "https://www.dropbox.com/scl/fi/8j0f7z3qwk1uu07x83d6t/WhatsApp-Video-2026-03-04-at-11.42.49-PM.mp4?rlkey=0xvrgc2m3x9qxbwlse1cm009v&st=5wuwexab&dl=1", title: "Holi", msg: "Colorful vibes!" },
-            { url: "https://i.ibb.co/ksmhhbgB/Whats-App-Image-2026-02-01-at-4-45-30-PM-1.jpg", title: "The End...", msg: "And so on..." }
+            { url: "https://i.ibb.co/ksmhhbgB/Whats-App-Image-2026-02-01-at-4-45-30-PM-1.jpg", title: "And so on...", msg: "And so on..." }
         ];
 
         let currentIndex = 0;
@@ -105,10 +131,7 @@
             setTimeout(() => {
                 const item = memories[currentIndex];
                 if (item.url.toLowerCase().includes('.mp4')) {
-                    container.innerHTML = `
-                        <video id="journeyVideo" src="${item.url}" class="media-content" autoplay loop muted playsinline></video>
-                        <button class="sound-btn" onclick="event.stopPropagation(); toggleSound();">🔊</button>
-                    `;
+                    container.innerHTML = `<video id="journeyVideo" src="${item.url}" class="media-content" autoplay loop muted playsinline></video><button class="sound-btn" onclick="event.stopPropagation(); toggleSound();">🔊</button>`;
                 } else {
                     container.innerHTML = `<img src="${item.url}" class="media-content">`;
                 }
@@ -120,10 +143,7 @@
 
         function toggleSound() {
             const video = document.getElementById('journeyVideo');
-            if (video) {
-                video.muted = !video.muted;
-                document.querySelector('.sound-btn').innerText = video.muted ? "🔇" : "🔊";
-            }
+            if (video) { video.muted = !video.muted; document.querySelector('.sound-btn').innerText = video.muted ? "🔇" : "🔊"; }
         }
 
         function createEmoji() {
@@ -136,45 +156,31 @@
             setTimeout(() => e.remove(), 4000);
         }
 
-        function labanSurprise() {
-            alert("Fresh Laban for a fresh year ahead! 🥛✨");
-            confetti({ particleCount: 150, spread: 100 });
-        }
+        function labanSurprise() { alert("Fresh Laban for a fresh year ahead! 🥛✨"); confetti({ particleCount: 150, spread: 100 }); }
 
         function nextPhoto() { if (currentIndex < memories.length - 1) { currentIndex++; updateCard(); } else { nextScreen(5); } }
         
-        function prevPhoto() { 
-            if (currentIndex > 0) { currentIndex--; updateCard(); } 
-            else { nextScreen(3); } 
-        }
+        function prevPhoto() { if (currentIndex > 0) { currentIndex--; updateCard(); } else { nextScreen(3); } }
         
+        function peelOff() { document.getElementById('note').classList.add('fall'); setTimeout(() => { nextScreen(6); }, 1000); }
+
         function showPopup() { alert(memories[currentIndex].msg); confetti({ particleCount: 30 }); }
 
         function nextScreen(num) {
             document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
-            document.getElementById('screen' + num).classList.add('active');
-            if(num === 4) { 
-                updateCard(); 
-                setInterval(createEmoji, 600);
-                const music = document.getElementById('bgMusic');
-                music.play().catch(e => console.log("Music interaction required"));
-            }
-            if(num === 5) {
-                document.getElementById('screen5').classList.add('animate__zoomIn');
-                setInterval(() => { confetti({ particleCount: 100, spread: 70, origin: { y: 0.6 } }); }, 800);
-            }
+            const kickout = document.getElementById('kickoutOverlay');
+            if (kickout) kickout.remove();
+            const target = document.getElementById('screen' + num);
+            if (target) target.classList.add('active');
+            if(num === 4) { updateCard(); setInterval(createEmoji, 600); document.getElementById('bgMusic').play(); }
+            if(num === 6) { setInterval(() => { confetti({ particleCount: 100, spread: 70, origin: { y: 0.6 } }); }, 800); }
         }
 
         function kickOut(msg) {
-            document.body.style.background = "linear-gradient(-45deg, #ff9a9e, #fad0c4, #a1c4fd, #c2e9fb)";
-            document.body.style.backgroundSize = "400% 400%";
-            document.body.style.animation = "gradient 15s ease infinite";
-            document.body.innerHTML = `
-                <div style="text-align:center; padding:50px; height:100vh; display:flex; flex-direction:column; justify-content:center; align-items:center;">
-                    <div style="font-size:4rem;" class="animate__animated animate__shakeX">🥊 🔫</div>
-                    <h1 style="color: #e74c3c; max-width: 80%; text-shadow: 0 2px 10px rgba(255,255,255,0.5);">${msg}</h1>
-                    <button class="btn btn-wait" style="background:#3498db;" onclick="location.reload()">Wait I'm really Juvan!</button>
-                </div>`;
+            document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+            let k = document.getElementById('kickoutOverlay');
+            if (!k) { k = document.createElement('div'); k.id = 'kickoutOverlay'; k.style.textAlign = 'center'; k.style.height = '100vh'; k.style.display = 'flex'; k.style.flexDirection = 'column'; k.style.justifyContent = 'center'; k.style.alignItems = 'center'; document.body.appendChild(k); }
+            k.innerHTML = `<div style="font-size:4rem;" class="animate__animated animate__shakeX">🥊 🔫</div><h1 style="color: #e74c3c; max-width: 80%; text-shadow: 0 2px 10px rgba(255,255,255,0.5);">${msg}</h1><button class="btn btn-wait" onclick="location.reload()">Wait I'm really Juvan!</button>`;
         }
     </script>
 </body>
