@@ -21,35 +21,24 @@
         .btn-yes { background: var(--yes-green); }
         .btn-no { background: var(--no-red); }
         .btn-wait { background: var(--wait-blue); }
-
-        /* Polaroid Glass Effect */
+        
         .card { 
-            position: relative; 
-            background: rgba(255, 255, 255, 0.15); 
-            backdrop-filter: blur(20px) saturate(180%);
-            border: 1px solid rgba(255, 255, 255, 0.3); 
-            border-radius: 20px; 
-            padding: 15px 15px 45px 15px; 
-            width: 320px; 
-            margin: auto; 
-            box-shadow: 0 25px 50px rgba(0,0,0,0.2); 
-            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            cursor: pointer;
+            position: relative; background: rgba(255, 255, 255, 0.15); backdrop-filter: blur(20px) saturate(180%);
+            border: 1px solid rgba(255, 255, 255, 0.3); border-radius: 20px; padding: 15px 15px 45px 15px; 
+            width: 320px; margin: auto; box-shadow: 0 25px 50px rgba(0,0,0,0.2); transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
         .card:hover { transform: scale(1.05) rotate(-2deg); background: rgba(255, 255, 255, 0.25); }
-        
         .media-content { width: 100%; height: 350px; object-fit: cover; border-radius: 15px; }
         .cake-img { width: 180px; animation: bounce 2s infinite; }
         .sound-btn { position: absolute; bottom: 85px; right: 35px; background: rgba(0,0,0,0.6); border: none; border-radius: 50%; width: 45px; height: 45px; color: white; font-size: 1.2rem; cursor: pointer; z-index: 10; display: flex; align-items: center; justify-content: center; }
         @keyframes bounce { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.1); } }
-        
         .floating-emoji { position: fixed; bottom: -50px; animation: floatUp 4s linear forwards; font-size: 1.5rem; pointer-events: none; z-index: -1; }
         @keyframes floatUp { to { transform: translateY(-110vh) rotate(360deg); opacity: 0; } }
     </style>
 </head>
 <body>
 
-    <audio id="bgMusic" src="https://www.dropbox.com/scl/fi/vub5unshkymu4z8tqon9l/Memories-Maroon-5-ringtone-by-jeffreykb71-stack.mp3?rlkey=v8q3e8j7z1x8l3m0v6w4p2n9t&st=6y3u2v1b&dl=1" loop></audio>
+    <audio id="bgMusic" src="https://www.dropbox.com/scl/fi/vf6nm0und62mbpmajd256/Maroon-5-Memories-_-Piano-Cover.mp3?rlkey=auiuhiat8sqkdb5fjc66ehv4c&st=7m8z3vir&dl=1" loop></audio>
 
     <div id="screen1" class="screen active">
         <span style="font-size: 5rem;" class="animate__animated animate__heartBeat">🧸</span>
@@ -74,7 +63,7 @@
     <div id="screen4" class="screen">
         <div id="memoryCard" class="card animate__animated">
             <div id="mediaContainer" onclick="showPopup()"></div>
-            <p id="currentTitle" style="font-weight: bold; margin-top: 15px; color: #333;"></p>
+            <p id="currentTitle" style="font-weight: bold; margin-top: 15px;"></p>
         </div>
         <div style="margin-top: 20px;">
             <button class="btn btn-yes" onclick="prevPhoto()">Back</button>
@@ -97,14 +86,14 @@
             { url: "https://www.dropbox.com/scl/fi/r41fvurmqvvc4j0n2da4x/WhatsApp-Video-2026-03-03-at-1.03.56-AM.mp4?rlkey=0g9hdh5r0rk4bmo0fjpnka8ew&st=07cpnkof&dl=1", title: "Dumb arguments", msg: "Dumb arguments" },
             { url: "https://i.ibb.co/rKDtZc1q/Whats-App-Image-2026-03-03-at-12-19-01-AM-2.jpg", title: "Deserts & Gossip", msg: "gossiping with deserts" },
             { url: "https://i.ibb.co/N6YkZQsB/Whats-App-Image-2026-02-01-at-8-59-37-PM-4.jpg", title: "Mykossss Day", msg: "To the day of mykosss" },
-            { url: "https://i.ibb.co/Y4HgFpTN/Whats-App-Image-2026-02-01-at-4-51-53-PM.jpg", title: "Photo Journey", msg: "Memories!" },
+            { url: "https://i.ibb.co/Y4HgFpTN/Whats-App-Image-2026-02-01-at-4-51-53-PM.jpg", title: "Memories", msg: "Memories!" },
             { url: "https://i.ibb.co/svnXRGqC/Whats-App-Image-2026-03-03-at-7-28-25-PM.jpg", title: "Fun Times", msg: "Memories!" },
             { url: "https://www.dropbox.com/scl/fi/z12zk9fdca67foneqjo5i/WhatsApp-Video-2026-03-03-at-1.13.55-AM.mp4?rlkey=o8b3s7zh5afl5eextx0s8lb7i&st=dgcgsqq6&dl=1", title: "Vodka🥴🍹", msg: "Cheers!" },
             { url: "https://www.dropbox.com/scl/fi/wd1j1ouifil61bofrzbar/WhatsApp-Video-2026-03-03-at-1.09.49-AM.mp4?rlkey=zm3gu4tvpzz023wms8fm7cpnf&st=0bvu4yxs&dl=1", title: "Dumber things", msg: "Dumber things" },
             { url: "https://www.dropbox.com/scl/fi/7btgua029na1q52l9f5ki/WhatsApp-Video-2026-03-03-at-1.11.38-AM.mp4?rlkey=0p0xa2gjqkdeoj1q2ks8eqdwc&st=ppjbcsqh&dl=1", title: "Even dumber things", msg: "Even dumber things" },
             { url: "https://www.dropbox.com/scl/fi/41m3aidg4vzqztqme5j6b/WhatsApp-Video-2026-03-03-at-1.12.37-AM.mp4?rlkey=9q3hu958mjda36jtqd8yil802&st=b5m5kv8g&dl=1", title: "Upadesham", msg: "Upadesham time!" },
             { url: "https://www.dropbox.com/scl/fi/8j0f7z3qwk1uu07x83d6t/WhatsApp-Video-2026-03-04-at-11.42.49-PM.mp4?rlkey=0xvrgc2m3x9qxbwlse1cm009v&st=5wuwexab&dl=1", title: "Holi", msg: "Colorful vibes!" },
-            { url: "https://i.ibb.co/ksmhhbgB/Whats-App-Image-2026-02-01-at-4-45-30-PM-1.jpg", title: "And so on...", msg: "And so on..." }
+            { url: "https://i.ibb.co/ksmhhbgB/Whats-App-Image-2026-02-01-at-4-45-30-PM-1.jpg", title: "The End...", msg: "And so on..." }
         ];
 
         let currentIndex = 0;
@@ -113,7 +102,6 @@
             const card = document.getElementById('memoryCard');
             const container = document.getElementById('mediaContainer');
             card.classList.add('animate__fadeOut'); 
-            
             setTimeout(() => {
                 const item = memories[currentIndex];
                 if (item.url.toLowerCase().includes('.mp4')) {
@@ -154,13 +142,17 @@
         }
 
         function nextPhoto() { if (currentIndex < memories.length - 1) { currentIndex++; updateCard(); } else { nextScreen(5); } }
-        function prevPhoto() { if (currentIndex > 0) { currentIndex--; updateCard(); } }
+        
+        function prevPhoto() { 
+            if (currentIndex > 0) { currentIndex--; updateCard(); } 
+            else { nextScreen(3); } 
+        }
+        
         function showPopup() { alert(memories[currentIndex].msg); confetti({ particleCount: 30 }); }
 
         function nextScreen(num) {
             document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
             document.getElementById('screen' + num).classList.add('active');
-            
             if(num === 4) { 
                 updateCard(); 
                 setInterval(createEmoji, 600);
@@ -174,15 +166,16 @@
         }
 
         function kickOut(msg) {
-    document.body.innerHTML = `
-        <div style="text-align:center; padding:50px; height:100vh; display:flex; flex-direction:column; justify-content:center; align-items:center; background: linear-gradient(-45deg, #ff9a9e, #fad0c4, #a1c4fd, #c2e9fb); background-size: 400% 400%; animation: gradient 15s ease infinite;">
-            <div style="font-size:4rem;" class="animate__animated animate__shakeX">🥊 🔫</div>
-            <h1 style="color: #e74c3c; max-width: 80%; text-shadow: 0 2px 10px rgba(255,255,255,0.5);">${msg}</h1>
-            <button class="btn btn-wait" style="background:#3498db; box-shadow: 0 4px 15px rgba(0,0,0,0.2);" onclick="location.reload()">
-                Wait I'm really Juvan!
-            </button>
-        </div>`;
-    }
+            document.body.style.background = "linear-gradient(-45deg, #ff9a9e, #fad0c4, #a1c4fd, #c2e9fb)";
+            document.body.style.backgroundSize = "400% 400%";
+            document.body.style.animation = "gradient 15s ease infinite";
+            document.body.innerHTML = `
+                <div style="text-align:center; padding:50px; height:100vh; display:flex; flex-direction:column; justify-content:center; align-items:center;">
+                    <div style="font-size:4rem;" class="animate__animated animate__shakeX">🥊 🔫</div>
+                    <h1 style="color: #e74c3c; max-width: 80%; text-shadow: 0 2px 10px rgba(255,255,255,0.5);">${msg}</h1>
+                    <button class="btn btn-wait" style="background:#3498db;" onclick="location.reload()">Wait I'm really Juvan!</button>
+                </div>`;
+        }
     </script>
 </body>
 </html>
