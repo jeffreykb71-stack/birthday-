@@ -35,6 +35,7 @@
         .btn:hover { background: rgba(255, 255, 255, 0.4); transform: translateY(-2px); }
         .btn-yes { color: #1b5e20; }
         .btn-no { color: #b71c1c; }
+        .btn-wait { background: var(--wait-blue); color: white; }
         
         /* Polaroid Card Polish */
         .card { 
@@ -73,7 +74,6 @@
             20% { transform: translate(-3px, 0px) rotate(1deg); }
             30% { transform: translate(3px, 2px) rotate(0deg); }
             40% { transform: translate(1px, -1px) rotate(1deg); }
-            50% { transform: translate(-1px, 2px) rotate(-1deg); }
         }
     </style>
 </head>
@@ -202,7 +202,7 @@
             }
             if(num === 6) { 
                 setInterval(() => { confetti({ particleCount: 100, spread: 70, origin: { y: 0.6 } }); }, 800); 
-                setInterval(() => createEmoji('mc'), 1000); // Main Character Crowns
+                setInterval(() => createEmoji('mc'), 1000);
             }
         }
 
